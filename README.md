@@ -4,6 +4,10 @@ A fast-paced browser arcade game by NK. Dodge obstacles, collect orbs, and chase
 
 Built with React, TypeScript, Express. Runs on web, mobile (Expo), PWA, and Chrome extension.
 
+## Play Now
+
+🎮 **[Play NEON RUNNER](https://arcade-runner-by-nk.onrender.com/)**
+
 ## Quick start
 
 ```
@@ -44,3 +48,8 @@ Press **8** during gameplay → enter passcode `7456660641` for 18 cheat effects
 - Render: auto-deploys from `main` branch
 - Replit: autoscale on port 5000
 - Requires `DATABASE_URL` env var
+
+## Stats
+
+- **Lines of Code**: ~16,000
+- **Language**: 75.8% TypeScript, 12.8% JavaScript, 9.4% HTML, 2% CSS
