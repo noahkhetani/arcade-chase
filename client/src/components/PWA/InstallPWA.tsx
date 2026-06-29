@@ -79,7 +79,7 @@ export default function InstallPWA() {
         </div>
         
         <p className="text-xs mb-3 opacity-90">
-          Install Arcade Collector for the best mobile gaming experience!
+          Install NEON RUNNER for the best mobile gaming experience!
         </p>
         
         <div className="flex space-x-2">

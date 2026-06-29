@@ -1,33 +1,15 @@
 {
-  "name": "Arcade Collector - Retro Game",
-  "short_name": "Arcade Collector",
-  "description": "Classic arcade-style collectible game with retro aesthetics",
+  "name": "NEON RUNNER",
+  "short_name": "NEON RUNNER",
+  "description": "A fast-paced neon arcade game by NK",
   "start_url": "/",
   "display": "fullscreen",
   "orientation": "portrait-primary",
-  "theme_color": "#4ECDC4",
-  "background_color": "#2C3E50",
+  "theme_color": "#00FF88",
+  "background_color": "#0A0A1A",
   "categories": ["games", "entertainment"],
   "icons": [
-    {
-      "src": "/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/screenshots/gameplay.svg",
-      "sizes": "1080x1920",
-      "type": "image/svg+xml",
-      "form_factor": "narrow"
-    }
+    { "src": "/icons/icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
   ]
 }

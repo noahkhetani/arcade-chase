@@ -52,89 +52,54 @@ export default function SplashScreen({ onComplete, show }: SplashScreenProps) {
 
   return (
     <div 
-      className="fixed inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 z-50 flex items-center justify-center"
+      className="fixed inset-0 bg-[#0A0A1A] z-50 flex items-center justify-center"
       style={{
         opacity: show ? 1 : 0,
         transition: 'opacity 0.3s ease'
       }}
     >
-      {/* Background particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 2}s`,
-              animationDuration: `${2 + Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
-
       <div className="text-center z-10 px-8">
-        {/* Game Logo */}
         <div className="mb-8">
-          <div className="relative mx-auto w-24 h-24 mb-6">
-            <div className="absolute inset-0 border-4 border-cyan-400/30 rounded-full animate-spin" style={{ animationDuration: '8s' }} />
-            <div className="absolute inset-2 border-2 border-purple-400/30 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }} />
-            <div className="absolute inset-0 flex items-center justify-center text-3xl animate-pulse">
-              🎮
-            </div>
-          </div>
-
           <h1 
-            className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent mb-2"
-            style={{ fontFamily: 'Orbitron, monospace' }}
+            className="text-3xl md:text-4xl font-bold mb-2"
+            style={{
+              color: '#00FF88',
+              textShadow: '0 0 20px #00FF88, 0 0 40px #00FF88',
+              fontFamily: 'Orbitron, monospace'
+            }}
           >
-            ARCADE COLLECTOR
+            NEON RUNNER
           </h1>
-          
-          <p className="text-lg text-gray-300">Retro Gaming Experience</p>
+          <p className="text-[#666] text-sm">by NK</p>
         </div>
 
-        {/* Loading Progress */}
         <div className="space-y-4 w-64 mx-auto">
-          {/* Progress Bar */}
-          <div className="bg-gray-700 rounded-full h-2 overflow-hidden">
+          <div className="bg-[#12122A] rounded-full h-2 overflow-hidden border border-[#00FF88]/20">
             <div 
-              className="bg-gradient-to-r from-cyan-400 to-purple-400 h-full rounded-full transition-all duration-300 ease-out"
-              style={{ width: `${progress}%` }}
+              className="bg-[#00FF88] h-full rounded-full transition-all duration-300 ease-out"
+              style={{ width: `${progress}%`, boxShadow: '0 0 10px #00FF88' }}
             />
           </div>
 
-          {/* Current Step */}
           <div className="text-center">
-            <p className="text-cyan-300 text-lg font-medium">
+            <p className="text-[#00FF88] text-lg font-medium" style={{ textShadow: '0 0 10px #00FF88' }}>
               {steps[currentStep]}
             </p>
-            
-            {/* Loading dots */}
-            <div className="flex justify-center space-x-1 mt-2">
+            <div className="flex justify-center space-x-2 mt-2">
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
+                  className="w-2 h-2 rounded-full animate-pulse"
                   style={{
+                    backgroundColor: '#7000FF',
                     animationDelay: `${i * 0.2}s`,
-                    animationDuration: '0.8s'
+                    animationDuration: '0.8s',
+                    boxShadow: '0 0 6px #7000FF'
                   }}
                 />
               ))}
             </div>
           </div>
-
-          {/* Progress Percentage */}
-          <p className="text-gray-400 text-sm animate-pulse">
-            {Math.round(progress)}%
-          </p>
-        </div>
-
-        {/* Version Info */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-500 text-sm">
-          <p>PWA v1.0.0 • Optimized for Mobile</p>
         </div>
       </div>
     </div>

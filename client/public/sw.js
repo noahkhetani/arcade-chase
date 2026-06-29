@@ -1,7 +1,6 @@
-// Service Worker for Arcade Collector PWA
-const CACHE_NAME = 'arcade-collector-v3-modern';
-const STATIC_CACHE = 'arcade-collector-static-v3-modern';
-const DYNAMIC_CACHE = 'arcade-collector-dynamic-v3-modern';
+const CACHE_NAME = 'neon-runner-v1';
+const STATIC_CACHE = 'neon-runner-static-v1';
+const DYNAMIC_CACHE = 'neon-runner-dynamic-v1';
 
 // Files to cache for offline functionality
 const STATIC_FILES = [
@@ -129,7 +128,7 @@ self.addEventListener('push', (event) => {
     console.log('Push data:', data);
     
     const options = {
-      body: data.body || 'New notification from Arcade Collector',
+      body: data.body || 'New notification from NEON RUNNER',
       icon: data.icon || '/icons/icon-192x192.png',
       badge: data.badge || '/icons/icon-192x192.png',
       tag: data.tag || 'arcade-collector',
@@ -141,17 +140,17 @@ self.addEventListener('push', (event) => {
     };
 
     event.waitUntil(
-      self.registration.showNotification(data.title || 'Arcade Collector', options)
+      self.registration.showNotification(data.title || 'NEON RUNNER', options)
     );
   } catch (error) {
     console.error('Error processing push notification:', error);
     
     // Fallback notification
     event.waitUntil(
-      self.registration.showNotification('Arcade Collector', {
+      self.registration.showNotification('NEON RUNNER', {
         body: 'You have a new notification!',
         icon: '/icons/icon-192x192.png',
-        tag: 'arcade-collector-fallback'
+        tag: 'neon-runner-fallback'
       })
     );
   }
@@ -182,7 +181,7 @@ self.addEventListener('notificationclick', (event) => {
     case 'snooze':
       // Schedule another reminder
       self.registration.showNotification('Play Reminder', {
-        body: 'Don\'t forget to play Arcade Collector!',
+        body: 'Come back and play NEON RUNNER!',
         icon: '/icons/icon-192x192.png',
         tag: 'play-reminder',
         timestamp: Date.now() + (2 * 60 * 60 * 1000) // 2 hours later

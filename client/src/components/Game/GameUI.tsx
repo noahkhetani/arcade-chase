@@ -8,7 +8,6 @@ export default function GameUI() {
   const { personalHighScore } = useHighScore();
   const { isMuted, toggleMute } = useAudio();
 
-  // Get active cheat effects for display
   const activeCheatsList = activeCheatEffects ? Object.entries(activeCheatEffects)
     .filter(([_, active]) => active)
     .map(([effect]) => effect) : [];
@@ -17,11 +16,11 @@ export default function GameUI() {
     <div className="game-ui">
       <div className="ui-top">
         <div className="score-display">
-          <div className="score">Score: {score.toLocaleString()}</div>
-          <div className="high-score">Personal Best: {personalHighScore.toLocaleString()}</div>
+          <div className="score">{score.toLocaleString()}</div>
+          <div className="high-score">PB: {personalHighScore.toLocaleString()}</div>
           {combo > 0 && (
             <div className="combo-display">
-              <span className="combo-text">COMBO x{combo}</span>
+              <span className="combo-text">x{combo}</span>
               <div className="combo-bar">
                 <div 
                   className="combo-progress" 
@@ -33,38 +32,27 @@ export default function GameUI() {
         </div>
         
         <div className="level-display">
-          Level {level}
+          Lv {level}
           {(cheatMode || activeCheatsList.length > 0) && (
             <div className="cheat-indicator">
-              CHEAT MODE
-              {activeCheatsList.length > 0 && (
-                <div className="active-cheats">
-                  {activeCheatsList.map(effect => (
-                    <span key={effect} className="cheat-effect">
-                      {effect === 'godMode' && '🛡️ GOD'}
-                      {effect === 'slowMotion' && '🐌 SLOW'}
-                      {effect === 'doubleScore' && '⭐ 2X'}
-                      {effect === 'superSpeed' && '⚡ FAST'}
-                      {effect === 'rainbowMode' && '🌈 RGB'}
-                      {effect === 'bigPlayer' && '📈 BIG'}
-                      {effect === 'tinyPlayer' && '📉 TINY'}
-                      {effect === 'infiniteLives' && '♾️ LIVES'}
-                      {effect === 'noObstacles' && '🚫 OBS'}
-                      {effect === 'autoCollect' && '🧲 AUTO'}
-                    </span>
-                  ))}
-                </div>
-              )}
+              CHEATS ON
+              <div className="active-cheats">
+                {activeCheatsList.map(effect => (
+                  <span key={effect} className="cheat-effect">
+                    {effect === 'godMode' && 'GOD'}
+                    {effect === 'doubleScore' && '2X'}
+                    {effect === 'superSpeed' && 'SPEED'}
+                    {effect === 'infiniteLives' && '∞LIVES'}
+                    {effect === 'autoCollect' && 'AUTO'}
+                  </span>
+                ))}
+              </div>
             </div>
           )}
         </div>
         
         <div className="controls">
-          <button 
-            onClick={toggleMute}
-            className="mute-button"
-            aria-label={isMuted ? "Unmute" : "Mute"}
-          >
+          <button onClick={toggleMute} className="mute-button" aria-label={isMuted ? "Unmute" : "Mute"}>
             {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
           </button>
         </div>
@@ -98,13 +86,10 @@ export default function GameUI() {
       <div className="ui-bottom">
         <div className="lives-display">
           {Array.from({ length: lives }, (_, i) => (
-            <Heart key={i} className="life-heart" fill="#FF6B6B" color="#FF6B6B" />
+            <Heart key={i} className="life-heart" fill="#FF006E" color="#FF006E" />
           ))}
         </div>
-        
-        <div className="instructions">
-          Use WASD or Arrow Keys to move
-        </div>
+        <div className="instructions-label">WASD / Arrows</div>
       </div>
     </div>
   );

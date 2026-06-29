@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { useGame } from "../../lib/stores/useGame";
 import { useHighScore } from "../../lib/stores/useHighScore";
 import { useAudio } from "../../lib/stores/useAudio";
@@ -12,16 +12,13 @@ export default function GameOverScreen() {
     playerName, 
     updatePersonalHighScore, 
     updateAllTimeHighScore,
-    addToLeaderboard,
-    cleanupDuplicates 
+    addToLeaderboard
   } = useHighScore();
   const { playGameOver, playHighScore } = useAudio();
 
   const isNewHighScore = score > personalHighScore;
   
-  // Check if this is a new high score when component mounts
-  React.useEffect(() => {
-    // Play appropriate sound when game over screen appears
+  useEffect(() => {
     if (isNewHighScore) {
       playHighScore();
     } else {
@@ -32,8 +29,6 @@ export default function GameOverScreen() {
       if (score > 0) {
         updatePersonalHighScore(score, level);
         updateAllTimeHighScore(score, playerName || "Player", level);
-        
-        // Only add to leaderboard if player has a name and score is significant
         if (playerName && score >= 50) {
           await addToLeaderboard(playerName, score, level);
         }
@@ -42,19 +37,16 @@ export default function GameOverScreen() {
     
     handleScoreUpdate();
   }, [score, level, playerName, updatePersonalHighScore, updateAllTimeHighScore, addToLeaderboard]);
-  
-  const isNewPersonalHigh = score > 0 && score === personalHighScore;
-  const isNewAllTimeHigh = score > 0 && score === allTimeHighScore;
 
   return (
     <div className="game-over-screen">
       <div className="game-over-content">
         <h1 className="game-over-title">GAME OVER</h1>
         
-        {(isNewPersonalHigh || isNewAllTimeHigh) && (
+        {isNewHighScore && (
           <div className="new-high-score">
-            <Trophy className="trophy-icon" />
-            <span>{isNewAllTimeHigh ? 'NEW ALL-TIME RECORD!' : 'NEW PERSONAL BEST!'}</span>
+            <Trophy className="stat-icon" />
+            <span>NEW RECORD!</span>
           </div>
         )}
         
@@ -85,25 +77,12 @@ export default function GameOverScreen() {
         </div>
         
         <button 
-          onClick={() => {
-            restart();
-            startTransition("ready", "slideDown");
-          }} 
+          onClick={() => { restart(); startTransition("ready", "slideDown"); }} 
           className="restart-button"
         >
           <RotateCcw size={20} />
           PLAY AGAIN
         </button>
-        
-        <div className="encouragement">
-          {(isNewPersonalHigh || isNewAllTimeHigh) ? (
-            "Incredible! You've set a new record!"
-          ) : score >= personalHighScore * 0.8 ? (
-            "So close to your personal best! Try again!"
-          ) : (
-            "Keep practicing to improve your score!"
-          )}
-        </div>
       </div>
     </div>
   );

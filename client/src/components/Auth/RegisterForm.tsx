@@ -49,7 +49,7 @@ export default function RegisterForm({ onSwitchToLogin, onSuccess }: RegisterFor
     <Card className="w-full max-w-md mx-auto bg-black/90 border-cyan-500/30">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl text-center text-cyan-400 font-mono">
-          Join Arcade Collector
+          Join NEON RUNNER
         </CardTitle>
         <CardDescription className="text-center text-gray-400">
           Create your account to save high scores

@@ -4,47 +4,36 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=3.0" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <title>Arcade Collector - Retro Game</title>
-    <meta name="description" content="Classic arcade-style collectible game with retro aesthetics. Collect items, avoid obstacles, and unlock cheat modes in this browser-based gaming experience.">
-    <meta name="keywords" content="arcade game, retro game, browser game, collectible game, cheat codes">
-    <meta name="author" content="Arcade Collector Game">
+    <title>NEON RUNNER - by NK</title>
+    <meta name="description" content="A fast-paced neon arcade game. Dodge, collect, and survive.">
+    <meta name="author" content="NK">
     
-    <!-- PWA Manifest -->
+    <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
-    
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#4ECDC4">
+    <meta name="theme-color" content="#00FF88">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Arcade Collector">
+    <meta name="apple-mobile-web-app-title" content="NEON RUNNER">
     <meta name="mobile-web-app-capable" content="yes">
     
-    <!-- App Icons -->
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png">
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Arcade Collector - Retro Game">
-    <meta property="og:description" content="Classic arcade-style collectible game with retro aesthetics">
+    <meta property="og:title" content="NEON RUNNER - by NK">
+    <meta property="og:description" content="A fast-paced neon arcade game">
     
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary">
-    <meta property="twitter:title" content="Arcade Collector - Retro Game">
-    <meta property="twitter:description" content="Classic arcade-style collectible game with retro aesthetics">
+    <meta property="twitter:title" content="NEON RUNNER - by NK">
+    <meta property="twitter:description" content="A fast-paced neon arcade game">
     
-    <!-- Google Fonts for retro gaming feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     
     <style>
-      /* Responsive mobile-friendly styling */
       html, body {
         touch-action: manipulation;
         user-select: none;
@@ -53,55 +42,19 @@
         padding: 0;
         min-height: 100%;
         width: 100%;
-        background: #2C3E50;
-      }
-      
-      /* Disable highlighting and context menus on game elements */
-      canvas, button {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        outline: none;
+        background: #0A0A1A;
       }
     </style>
   </head>
   <body>
     <div id="root"></div>
     
-    <!-- PWA Service Worker Registration -->
     <script>
-      // Register service worker for PWA functionality
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then((registration) => {
-              console.log('SW registered: ', registration);
-            })
-            .catch((registrationError) => {
-              console.log('SW registration failed: ', registrationError);
-            });
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
         });
       }
-
-      // Handle PWA install prompt
-      let deferredPrompt;
-      window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent the mini-infobar from appearing on mobile
-        e.preventDefault();
-        // Stash the event so it can be triggered later
-        deferredPrompt = e;
-        // Update UI notify user they can install the PWA
-        window.showInstallPromotion = true;
-      });
-
-      // Handle successful PWA installation
-      window.addEventListener('appinstalled', (evt) => {
-        console.log('PWA was installed');
-        window.showInstallPromotion = false;
-      });
     </script>
     
     <script type="module" src="/src/main.tsx"></script>

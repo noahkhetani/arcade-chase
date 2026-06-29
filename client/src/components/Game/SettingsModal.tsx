@@ -61,7 +61,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'arcade-collector-settings.json';
+    a.download = 'neon-runner-settings.json';
     a.click();
     URL.revokeObjectURL(url);
   };

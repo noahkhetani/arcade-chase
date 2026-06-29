@@ -78,7 +78,7 @@ export default function AppUpdatePrompt() {
       </div>
       
       <p className="text-xs mb-3 opacity-90">
-        A new version of Arcade Collector is ready! Update now for the latest features and improvements.
+        A new version of NEON RUNNER is ready! Update now for the latest features and improvements.
       </p>
       
       <div className="flex space-x-2">

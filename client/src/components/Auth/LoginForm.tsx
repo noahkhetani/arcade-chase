@@ -34,7 +34,7 @@ export default function LoginForm({ onSwitchToRegister, onSuccess }: LoginFormPr
     <Card className="w-full max-w-md mx-auto bg-black/90 border-cyan-500/30">
       <CardHeader className="space-y-1">
         <CardTitle className="text-2xl text-center text-cyan-400 font-mono">
-          Login to Arcade Collector
+          Login to NEON RUNNER
         </CardTitle>
         <CardDescription className="text-center text-gray-400">
           Enter your credentials to continue playing

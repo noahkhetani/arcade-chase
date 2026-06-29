@@ -238,7 +238,7 @@ export const useHighScore = create<HighScoreState>()(
       }
     }),
     {
-      name: "arcade-collector-scores",
+      name: "neon-runner-scores",
     }
   )
 );

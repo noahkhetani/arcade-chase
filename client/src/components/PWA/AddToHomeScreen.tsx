@@ -67,7 +67,7 @@ export default function AddToHomeScreen() {
             <Smartphone className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-bold text-sm">Install Arcade Collector</h3>
+            <h3 className="font-bold text-sm">Install NEON RUNNER</h3>
             <p className="text-xs opacity-90">Get the full native app experience</p>
           </div>
         </div>

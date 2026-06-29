@@ -143,7 +143,7 @@ class PushNotificationManager {
       body: data.body,
       icon: data.icon || '/icons/icon-192x192.png',
       badge: data.badge || '/icons/icon-192x192.png',
-      tag: data.tag || 'arcade-collector',
+      tag: data.tag || 'neon-runner',
       data: data.data,
       requireInteraction: false,
       silent: false
@@ -244,7 +244,7 @@ class PushNotificationManager {
     }
 
     await this.showNotification({
-      title: 'Arcade Collector Updated!',
+      title: 'NEON RUNNER Updated!',
       body: `Version ${version} is now available with new features and improvements.`,
       tag: 'game-update',
       data: { type: 'update', version },
@@ -293,7 +293,7 @@ class PushNotificationManager {
 
     await this.showNotification({
       title: 'Time to Play!',
-      body: 'Come back and beat your high score in Arcade Collector!',
+      body: 'Come back and beat your high score in NEON RUNNER!',
       tag: 'play-reminder',
       data: { type: 'reminder' },
       actions: [
