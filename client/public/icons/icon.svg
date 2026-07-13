@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#2C3E50" rx="64"/>
+  
+  <!-- Main game elements -->
+  <!-- Player ship -->
+  <polygon points="256,120 220,180 292,180" fill="#4ECDC4" stroke="#fff" stroke-width="3"/>
+  
+  <!-- Collectible items -->
+  <circle cx="180" cy="240" r="20" fill="#FFD700" stroke="#fff" stroke-width="2"/>
+  <circle cx="332" cy="240" r="20" fill="#FF6B6B" stroke="#fff" stroke-width="2"/>
+  <circle cx="256" cy="300" r="20" fill="#95E1D3" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Obstacles -->
+  <polygon points="140,360 120,400 160,400" fill="#E74C3C" stroke="#fff" stroke-width="2"/>
+  <polygon points="372,360 352,400 392,400" fill="#E74C3C" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Game title -->
+  <text x="256" y="450" text-anchor="middle" fill="#4ECDC4" font-family="monospace" font-size="24" font-weight="bold">ARCADE</text>
+  <text x="256" y="480" text-anchor="middle" fill="#95E1D3" font-family="monospace" font-size="16">COLLECTOR</text>
+</svg>

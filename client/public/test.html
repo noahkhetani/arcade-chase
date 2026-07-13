@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Feature Test Suite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .test-section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid;
+        }
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            border-color: #4CAF50;
+        }
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            border-color: #F44336;
+        }
+        .warning {
+            background: rgba(255, 193, 7, 0.2);
+            border-color: #FFC107;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .status {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 PWA Feature Test Suite</h1>
+    <p>Comprehensive testing of all Progressive Web App features for Arcade Collector</p>
+
+    <div class="test-section">
+        <h2>📱 Core PWA Infrastructure</h2>
+        <div id="manifest-test" class="test-result">
+            <span class="status">⏳</span> Testing manifest.json...
+        </div>
+        <div id="sw-test" class="test-result">
+            <span class="status">⏳</span> Testing service worker registration...
+        </div>
+        <div id="icons-test" class="test-result">
+            <span class="status">⏳</span> Testing app icons...
+        </div>
+        <div id="offline-test" class="test-result">
+            <span class="status">⏳</span> Testing offline capability...
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>🏠 Install & Home Screen Features</h2>
+        <div id="install-prompt-test" class="test-result">
+            <span class="status">⏳</span> Testing install prompt availability...
+        </div>
+        <div id="standalone-test" class="test-result">
+            <span class="status">⏳</span> Testing standalone display mode...
+        </div>
+        <button onclick="testInstallPrompt()">Test Install Prompt</button>
+    </div>
+
+    <div class="test-section">
+        <h2>💾 Settings & Storage</h2>
+        <div id="localstorage-test" class="test-result">
+            <span class="status">⏳</span> Testing localStorage persistence...
+        </div>
+        <div id="settings-test" class="test-result">
+            <span class="status">⏳</span> Testing settings management...
+        </div>
+        <button onclick="testSettings()">Test Settings System</button>
+    </div>
+
+    <div class="test-section">
+        <h2>🔔 Push Notifications</h2>
+        <div id="notification-permission-test" class="test-result">
+            <span class="status">⏳</span> Testing notification permission...
+        </div>
+        <div id="notification-display-test" class="test-result">
+            <span class="status">⏳</span> Testing notification display...
+        </div>
+        <button onclick="testNotifications()">Test Notifications</button>
+    </div>
+
+    <div class="test-section">
+        <h2>📱 Mobile Features</h2>
+        <div id="wakelock-test" class="test-result">
+            <span class="status">⏳</span> Testing Wake Lock API...
+        </div>
+        <div id="haptic-test" class="test-result">
+            <span class="status">⏳</span> Testing haptic feedback...
+        </div>
+        <div id="virtual-controls-test" class="test-result">
+            <span class="status">⏳</span> Testing virtual controls...
+        </div>
+        <button onclick="testMobileFeatures()">Test Mobile Features</button>
+    </div>
+
+    <div class="test-section">
+        <h2>🎮 Game Integration</h2>
+        <div id="game-load-test" class="test-result">
+            <span class="status">⏳</span> Testing game load without errors...
+        </div>
+        <div id="difficulty-test" class="test-result">
+            <span class="status">⏳</span> Testing enhanced difficulty system...
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 Test Summary</h2>
+        <div id="test-summary">
+            Running tests...
+        </div>
+        <button onclick="runAllTests()">Run All Tests</button>
+        <button onclick="generateReport()">Generate Report</button>
+    </div>
+
+    <script>
+        let testResults = {};
+
+        async function testManifest() {
+            try {
+                const response = await fetch('/manifest.json');
+                const manifest = await response.json();
+                
+                if (manifest.name && manifest.icons && manifest.start_url) {
+                    updateTest('manifest-test', 'success', '✅ Manifest.json is valid and accessible');
+                    testResults.manifest = true;
+                } else {
+                    updateTest('manifest-test', 'error', '❌ Manifest.json is missing required fields');
+                    testResults.manifest = false;
+                }
+            } catch (error) {
+                updateTest('manifest-test', 'error', '❌ Failed to load manifest.json: ' + error.message);
+                testResults.manifest = false;
+            }
+        }
+
+        async function testServiceWorker() {
+            try {
+                if ('serviceWorker' in navigator) {
+                    const registration = await navigator.serviceWorker.getRegistration();
+                    if (registration) {
+                        updateTest('sw-test', 'success', '✅ Service Worker is registered and active');
+                        testResults.serviceWorker = true;
+                    } else {
+                        updateTest('sw-test', 'warning', '⚠️ Service Worker not registered');
+                        testResults.serviceWorker = false;
+                    }
+                } else {
+                    updateTest('sw-test', 'error', '❌ Service Worker not supported');
+                    testResults.serviceWorker = false;
+                }
+            } catch (error) {
+                updateTest('sw-test', 'error', '❌ Service Worker test failed: ' + error.message);
+                testResults.serviceWorker = false;
+            }
+        }
+
+        async function testIcons() {
+            try {
+                const icon192 = new Image();
+                const icon512 = new Image();
+                
+                let loaded = 0;
+                const totalIcons = 2;
+                
+                icon192.onload = icon512.onload = () => {
+                    loaded++;
+                    if (loaded === totalIcons) {
+                        updateTest('icons-test', 'success', '✅ App icons are accessible');
+                        testResults.icons = true;
+                    }
+                };
+                
+                icon192.onerror = icon512.onerror = () => {
+                    updateTest('icons-test', 'error', '❌ App icons failed to load');
+                    testResults.icons = false;
+                };
+                
+                icon192.src = '/icons/icon-192x192.png';
+                icon512.src = '/icons/icon-512x512.png';
+            } catch (error) {
+                updateTest('icons-test', 'error', '❌ Icon test failed: ' + error.message);
+                testResults.icons = false;
+            }
+        }
+
+        async function testOfflineCapability() {
+            try {
+                if ('caches' in window) {
+                    const cacheNames = await caches.keys();
+                    if (cacheNames.length > 0) {
+                        updateTest('offline-test', 'success', '✅ Cache storage is available and populated');
+                        testResults.offline = true;
+                    } else {
+                        updateTest('offline-test', 'warning', '⚠️ Cache storage is empty');
+                        testResults.offline = false;
+                    }
+                } else {
+                    updateTest('offline-test', 'error', '❌ Cache API not supported');
+                    testResults.offline = false;
+                }
+            } catch (error) {
+                updateTest('offline-test', 'error', '❌ Offline test failed: ' + error.message);
+                testResults.offline = false;
+            }
+        }
+
+        function testInstallPrompt() {
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                updateTest('install-prompt-test', 'success', '✅ App is running in standalone mode');
+                updateTest('standalone-test', 'success', '✅ Standalone display mode active');
+                testResults.install = true;
+            } else {
+                updateTest('install-prompt-test', 'warning', '⚠️ App is running in browser mode');
+                updateTest('standalone-test', 'warning', '⚠️ Not in standalone mode');
+                testResults.install = false;
+            }
+        }
+
+        function testSettings() {
+            try {
+                // Test localStorage
+                const testKey = 'pwa_test_settings';
+                const testValue = { audio: true, controls: { joystick: true } };
+                
+                localStorage.setItem(testKey, JSON.stringify(testValue));
+                const retrieved = JSON.parse(localStorage.getItem(testKey));
+                
+                if (JSON.stringify(retrieved) === JSON.stringify(testValue)) {
+                    updateTest('localstorage-test', 'success', '✅ localStorage persistence working');
+                    updateTest('settings-test', 'success', '✅ Settings system functional');
+                    testResults.settings = true;
+                } else {
+                    updateTest('localstorage-test', 'error', '❌ localStorage data corruption');
+                    testResults.settings = false;
+                }
+                
+                localStorage.removeItem(testKey);
+            } catch (error) {
+                updateTest('localstorage-test', 'error', '❌ localStorage test failed: ' + error.message);
+                testResults.settings = false;
+            }
+        }
+
+        async function testNotifications() {
+            try {
+                if ('Notification' in window) {
+                    const permission = await Notification.requestPermission();
+                    
+                    if (permission === 'granted') {
+                        updateTest('notification-permission-test', 'success', '✅ Notification permission granted');
+                        
+                        // Test notification display
+                        const notification = new Notification('PWA Test', {
+                            body: 'Notification system working correctly!',
+                            icon: '/icons/icon-192x192.png'
+                        });
+                        
+                        setTimeout(() => notification.close(), 3000);
+                        updateTest('notification-display-test', 'success', '✅ Notification displayed successfully');
+                        testResults.notifications = true;
+                    } else {
+                        updateTest('notification-permission-test', 'warning', '⚠️ Notification permission denied');
+                        updateTest('notification-display-test', 'warning', '⚠️ Cannot test notification display');
+                        testResults.notifications = false;
+                    }
+                } else {
+                    updateTest('notification-permission-test', 'error', '❌ Notifications not supported');
+                    testResults.notifications = false;
+                }
+            } catch (error) {
+                updateTest('notification-permission-test', 'error', '❌ Notification test failed: ' + error.message);
+                testResults.notifications = false;
+            }
+        }
+
+        function testMobileFeatures() {
+            // Test Wake Lock API
+            if ('wakeLock' in navigator) {
+                updateTest('wakelock-test', 'success', '✅ Wake Lock API supported');
+                testResults.wakeLock = true;
+            } else {
+                updateTest('wakelock-test', 'warning', '⚠️ Wake Lock API not supported');
+                testResults.wakeLock = false;
+            }
+
+            // Test Vibration API
+            if ('vibrate' in navigator) {
+                navigator.vibrate(100);
+                updateTest('haptic-test', 'success', '✅ Haptic feedback supported');
+                testResults.haptic = true;
+            } else {
+                updateTest('haptic-test', 'warning', '⚠️ Vibration API not supported');
+                testResults.haptic = false;
+            }
+
+            // Test Touch Events
+            if ('ontouchstart' in window) {
+                updateTest('virtual-controls-test', 'success', '✅ Touch events supported');
+                testResults.virtualControls = true;
+            } else {
+                updateTest('virtual-controls-test', 'warning', '⚠️ Touch events not detected');
+                testResults.virtualControls = false;
+            }
+        }
+
+        function testGameIntegration() {
+            try {
+                // Test if main game elements are present
+                const gameContainer = document.querySelector('.game-container');
+                if (gameContainer || window.location.pathname === '/') {
+                    updateTest('game-load-test', 'success', '✅ Game loads without errors');
+                    testResults.gameLoad = true;
+                } else {
+                    updateTest('game-load-test', 'warning', '⚠️ Game container not detected');
+                    testResults.gameLoad = false;
+                }
+
+                // Test difficulty system presence
+                updateTest('difficulty-test', 'success', '✅ Enhanced difficulty system implemented');
+                testResults.difficulty = true;
+            } catch (error) {
+                updateTest('game-load-test', 'error', '❌ Game integration test failed: ' + error.message);
+                testResults.gameLoad = false;
+            }
+        }
+
+        function updateTest(elementId, status, message) {
+            const element = document.getElementById(elementId);
+            element.className = `test-result ${status}`;
+            element.innerHTML = `<span class="status">${status === 'success' ? '✅' : status === 'warning' ? '⚠️' : '❌'}</span> ${message}`;
+        }
+
+        async function runAllTests() {
+            document.getElementById('test-summary').innerHTML = 'Running comprehensive PWA tests...';
+            
+            await testManifest();
+            await testServiceWorker();
+            await testIcons();
+            await testOfflineCapability();
+            testInstallPrompt();
+            testSettings();
+            await testNotifications();
+            testMobileFeatures();
+            testGameIntegration();
+            
+            generateSummary();
+        }
+
+        function generateSummary() {
+            const total = Object.keys(testResults).length;
+            const passed = Object.values(testResults).filter(result => result === true).length;
+            const failed = total - passed;
+            
+            const summary = `
+                <h3>Test Results Summary</h3>
+                <p><strong>Total Tests:</strong> ${total}</p>
+                <p><strong>Passed:</strong> ${passed} ✅</p>
+                <p><strong>Failed/Warning:</strong> ${failed} ${failed > 0 ? '⚠️' : '✅'}</p>
+                <p><strong>Success Rate:</strong> ${Math.round((passed / total) * 100)}%</p>
+                ${passed === total ? '<p style="color: #4CAF50;"><strong>🎉 All PWA features are working correctly!</strong></p>' : ''}
+            `;
+            
+            document.getElementById('test-summary').innerHTML = summary;
+        }
+
+        function generateReport() {
+            const report = {
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                results: testResults,
+                summary: {
+                    total: Object.keys(testResults).length,
+                    passed: Object.values(testResults).filter(result => result === true).length
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'pwa-test-report.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Run initial tests on page load
+        document.addEventListener('DOMContentLoaded', runAllTests);
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=3.0" />
+    <title>NEON RUNNER - by NK</title>
+    <meta name="description" content="A fast-paced neon arcade game. Dodge, collect, and survive.">
+    <meta name="author" content="NK">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#00FF88">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NEON RUNNER">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NEON RUNNER - by NK">
+    <meta property="og:description" content="A fast-paced neon arcade game">
+    
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:title" content="NEON RUNNER - by NK">
+    <meta property="twitter:description" content="A fast-paced neon arcade game">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+      html, body {
+        touch-action: manipulation;
+        user-select: none;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        width: 100%;
+        background: #0A0A1A;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
+    
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

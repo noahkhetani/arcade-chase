@@ -1,0 +1,34 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4ECDC4"/>
+      <stop offset="100%" stop-color="#44A08D"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="url(#bg)" stroke="#2E3A59" stroke-width="4"/>
+  
+  <!-- Player character -->
+  <circle cx="64" cy="64" r="12" fill="#4ECDC4" filter="url(#glow)"/>
+  
+  <!-- Collectibles around -->
+  <circle cx="40" cy="40" r="6" fill="#9B59B6" filter="url(#glow)"/>
+  <circle cx="88" cy="40" r="6" fill="#FFD700" filter="url(#glow)"/>
+  <circle cx="40" cy="88" r="6" fill="#4ECDC4" filter="url(#glow)"/>
+  <circle cx="88" cy="88" r="6" fill="#9B59B6" filter="url(#glow)"/>
+  
+  <!-- Obstacle -->
+  <rect x="28" y="78" width="8" height="8" fill="#FF6B6B" transform="rotate(45 32 82)" filter="url(#glow)"/>
+  
+  <!-- Game title text -->
+  <text x="64" y="20" text-anchor="middle" fill="white" font-family="monospace" font-size="8" font-weight="bold">ARCADE</text>
+  <text x="64" y="116" text-anchor="middle" fill="white" font-family="monospace" font-size="6" font-weight="bold">COLLECTOR</text>
+</svg>
